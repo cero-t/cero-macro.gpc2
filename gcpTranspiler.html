@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Cero Macro Form</title>
+	<script type="text/javascript">
+
+function config() {
+	KEY_ASSIGN = PS3_ASSIGN;
+}
+
+var KEY_ASSIGN;
+
+var XB360_ASSIGN = {
+	"UP": "BUTTON_10",
+	"DOWN": "BUTTON_11",
+	"LEFT": "BUTTON_12",
+	"RIGHT": "BUTTON_13",
+	"LP": "BUTTON_15",
+	"MP": "BUTTON_17",
+	"HP": "BUTTON_14",
+	"LK": "BUTTON_16",
+	"MK": "BUTTON_8",
+	"HK": "BUTTON_5",
+	"SELECT": "",
+	"START": "",
+}
+var PS3_ASSIGN = {
+	"UP": "BUTTON_10",
+	"DOWN": "BUTTON_11",
+	"LEFT": "BUTTON_12",
+	"RIGHT": "BUTTON_13",
+	"LP": "BUTTON_17",
+	"MP": "BUTTON_14",
+	"HP": "BUTTON_4",
+	"LK": "BUTTON_16",
+	"MK": "BUTTON_15",
+	"HK": "BUTTON_5",
+	"SELECT": "BUTTON_2",
+	"START": "BUTTON_3",
+}
+
+function submitForm(form) {
+	config();
+    var result = convert(form['in'].value);
+	form['gpc'].value = result.join('\n');
+	return false;
+}
+
+function convert(text) {
+	var result = [];
+
+	var currentMillis = 0;
+	var totalFrames = 0;
+
+	var lines = text.split("\n");
+	for (var i in lines) {
+		if (lines[i].length < 1) {
+			continue;
+		}
+
+		var items = lines[i].split(":");
+
+		var command = items[0].toLowerCase();
+		if (command.indexOf('1') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['DOWN'] + ", 100.0);")
+			result.push("set_val(" + KEY_ASSIGN['LEFT'] + ", 100.0);")
+		}
+		if (command.indexOf('2') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['DOWN'] + ", 100.0);")
+		}
+		if (command.indexOf('3') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['DOWN'] + ", 100.0);")
+			result.push("set_val(" + KEY_ASSIGN['RIGHT'] + ", 100.0);")
+		}
+		if (command.indexOf('4') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['LEFT'] + ", 100.0);")
+		}
+		if (command.indexOf('6') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['RIGHT'] + ", 100.0);")
+		}
+		if (command.indexOf('7') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['UP'] + ", 100.0);")
+			result.push("set_val(" + KEY_ASSIGN['LEFT'] + ", 100.0);")
+		}
+		if (command.indexOf('8') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['UP'] + ", 100.0);")
+		}
+		if (command.indexOf('9') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['UP'] + ", 100.0);")
+			result.push("set_val(" + KEY_ASSIGN['RIGHT'] + ", 100.0);")
+		}
+
+		if (command.indexOf('lp') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['LP'] + ", 100.0);")
+		}
+		if (command.indexOf('mp') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['MP'] + ", 100.0);")
+		}
+		if (command.indexOf('hp') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['HP'] + ", 100.0);")
+		}
+		if (command.indexOf('lk') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['LK'] + ", 100.0);")
+		}
+		if (command.indexOf('mk') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['MK'] + ", 100.0);")
+		}
+		if (command.indexOf('hk') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['HK'] + ", 100.0);")
+		}
+
+		if (command.indexOf('select') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['SELECT'] + ", 100.0);")
+		}
+		if (command.indexOf('start') >= 0) {
+			result.push("set_val(" + KEY_ASSIGN['START'] + ", 100.0);")
+		}
+
+		if (items.length == 1) {
+			totalFrames ++;
+		} else {
+			totalFrames += Number(items[1]);
+		}
+
+		var targetMillis = Math.ceil(totalFrames * 1000 / 59.94);
+		result.push("wait(" + (targetMillis - currentMillis) + ");");
+		currentMillis = targetMillis;
+	}
+
+	return result;
+}
+
+	</script>
+</head>
+<body>
+<form id="macroForm" name="macroForm" action="." method="POST" onsubmit="return submitForm(this);">
+	<b>Input</b><br/>
+	<textarea id="in" name="in" rows="10" cols="40">hk:40
+6:15
+hp:20
+:5
+hphk:10
+:45
+4hk:60
+lk:5
+2:1
+1:1
+4lk:5
+:50
+2:1
+3:1
+6:1
+2:1
+3:1
+6lp:1</textarea><br/>
+    <br/>
+    <input type="submit" id="convert" name="convert" value="convert!"/><br/>
+    <br/>
+	<b>Output (GPC2 Script)</b><br/>
+	<textarea id="gpc" name="gpc" rows="10" cols="40"></textarea><br/>
+</form>
+<br/>
+</body>
+</html>
