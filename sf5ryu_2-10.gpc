@@ -1,0 +1,148 @@
+#pragma METAINFO("@cero_t", 1, 0, "Ryu Trial Vol.2 #10")
+
+// ------------------------------------------------------------
+// Configuration
+// ------------------------------------------------------------
+
+#define FRAME_RATE	5994 // fps * 100
+#define MODE		'ps3' // ps3, ps4, xb360, xb1
+
+// ------------------------------------------------------------
+// Combo
+// ------------------------------------------------------------
+combo my_combo {
+	command("9"); wait(calc_wait(30));
+	command("hk"); wait(calc_wait(30));
+	command("mp"); wait(calc_wait(28));
+	command("2hp"); wait(calc_wait(10));
+	command(""); wait(calc_wait(1));
+	command("hphk"); wait(calc_wait(10));
+	command(""); wait(calc_wait(55));
+	command("hk"); wait(calc_wait(45));
+	command("lk"); wait(calc_wait(10));
+	command("6"); wait(calc_wait(1));
+	command("2"); wait(calc_wait(1));
+	command("3hp"); wait(calc_wait(15));
+	command("2"); wait(calc_wait(1));
+	command("3"); wait(calc_wait(1));
+	command("6"); wait(calc_wait(1));
+	command("2"); wait(calc_wait(1));
+	command("3"); wait(calc_wait(1));
+	command("6hp"); wait(calc_wait(1));
+}
+
+// ------------------------------------------------------------
+// Functions
+// ------------------------------------------------------------
+bool done = FALSE;
+uint32 startMillis = 0;
+uint32 totalFrames = 0;
+int8 LP, MP, HP, LK, MK, HK, SELECT, START;
+
+main {
+	if (done == FALSE) {
+		done = TRUE;
+		configure();
+		startMillis = system_time();
+		combo_run(my_combo);
+    }
+}
+
+void configure() {
+	if (MODE == 'ps3' || MODE == 'ps4') {
+		LP = BUTTON_17;
+		MP = BUTTON_14;
+		HP = BUTTON_4;
+		LK = BUTTON_16;
+		MK = BUTTON_15;
+		HK = BUTTON_5;
+		SELECT = BUTTON_2;
+		START = BUTTON_3;
+	} else if (MODE == 'xb360' || MODE == 'xb1') {
+		LP = BUTTON_15;
+		MP = BUTTON_17;
+		HP = BUTTON_14;
+		LK = BUTTON_16;
+		MK = BUTTON_8;
+		HK = BUTTON_5;
+		SELECT = BUTTON_2;
+		START = BUTTON_3;
+	}
+}
+
+void command(char* commands) {
+	int i;
+	for (i = 0; i < 10; i++) {
+		char c = commands[i];
+		char next = commands[i + 1];
+
+		if (c == NULL) {
+			break;
+		}
+
+		if (c == '1') {
+			set_val(BUTTON_11, 100.0);
+			set_val(BUTTON_12, 100.0);
+		} else if (c == '2') {
+			set_val(BUTTON_11, 100.0);
+		} else if (c == '3') {
+			set_val(BUTTON_11, 100.0);
+			set_val(BUTTON_13, 100.0);
+		} else if (c == '4') {
+			set_val(BUTTON_12, 100.0);
+		} else if (c == '6') {
+			set_val(BUTTON_13, 100.0);
+		} else if (c == '7') {
+			set_val(BUTTON_10, 100.0);
+			set_val(BUTTON_12, 100.0);
+		} else if (c == '8') {
+			set_val(BUTTON_10, 100.0);
+		} else if (c == '9') {
+			set_val(BUTTON_10, 100.0);
+			set_val(BUTTON_13, 100.0);
+		} else if (c == 'l' || c == 'L') {
+			if (next == 'p' || next == 'P') {
+				set_val(LP, 100.0);
+				i++;
+			} else if (next == 'k' || next == 'K') {
+				set_val(LK, 100.0);
+				i++;
+			}
+		} else if (c == 'm' || c == 'M') {
+			if (next == 'p' || next == 'P') {
+				set_val(MP, 100.0);
+				i++;
+			} else if (next == 'k' || next == 'K') {
+				set_val(MK, 100.0);
+				i++;
+			}
+		} else if (c == 'h' || c == 'H') {
+			if (next == 'p' || next == 'P') {
+				set_val(HP, 100.0);
+				i++;
+			} else if (next == 'k' || next == 'K') {
+				set_val(HK, 100.0);
+				i++;
+			}
+		} else if (c == 's' || c == 'S') {
+			if (next == 'e' || next == 'E') {
+				set_val(SELECT, 100.0);
+				i++;
+			} else if (next == 't' || next == 'T') {
+				set_val(START, 100.0);
+				i++;
+			}
+		}
+	}
+}
+
+int calc_wait(int frames) {
+	totalFrames += frames;
+	int targetMillis = totalFrames * 100000 / FRAME_RATE;
+	if ((totalFrames * 100000) % FRAME_RATE > 0) {
+		targetMillis ++;
+	}
+	int diff = system_time() - startMillis;
+	int result = targetMillis - diff;
+	return result;
+}
