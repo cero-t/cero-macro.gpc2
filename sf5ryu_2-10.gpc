@@ -11,41 +11,37 @@
 // Combo
 // ------------------------------------------------------------
 combo my_combo {
-	command("9"); wait(calc_wait(30));
-	command("hk"); wait(calc_wait(30));
-	command("mp"); wait(calc_wait(28));
-	command("2hp"); wait(calc_wait(10));
-	command(""); wait(calc_wait(1));
-	command("hphk"); wait(calc_wait(10));
-	command(""); wait(calc_wait(55));
-	command("hk"); wait(calc_wait(45));
-	command("lk"); wait(calc_wait(10));
-	command("6"); wait(calc_wait(1));
-	command("2"); wait(calc_wait(1));
-	command("3hp"); wait(calc_wait(15));
-	command("2"); wait(calc_wait(1));
-	command("3"); wait(calc_wait(1));
-	command("6"); wait(calc_wait(1));
-	command("2"); wait(calc_wait(1));
-	command("3"); wait(calc_wait(1));
-	command("6hp"); wait(calc_wait(1));
+	command("9"); wait(frame(30));
+	command("hk"); wait(frame(30));
+	command("mp"); wait(frame(28));
+	command("2hp"); wait(frame(10));
+	command(""); wait(frame(1));
+	command("hphk"); wait(frame(10));
+	command(""); wait(frame(55));
+	command("hk"); wait(frame(45));
+	command("lk"); wait(frame(10));
+	command("6"); wait(frame(1));
+	command("2"); wait(frame(1));
+	command("3hp"); wait(frame(15));
+	command("2"); wait(frame(1));
+	command("3"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("2"); wait(frame(1));
+	command("3"); wait(frame(1));
+	command("6hp"); wait(frame(1));
 }
 
 // ------------------------------------------------------------
 // Functions
 // ------------------------------------------------------------
-bool done = FALSE;
 uint32 startMillis = 0;
 uint32 totalFrames = 0;
 int8 LP, MP, HP, LK, MK, HK, SELECT, START;
 
-main {
-	if (done == FALSE) {
-		done = TRUE;
-		configure();
-		startMillis = system_time();
-		combo_run(my_combo);
-    }
+init {
+	configure();
+	startMillis = system_time();
+	combo_run(my_combo);
 }
 
 void configure() {
@@ -136,7 +132,7 @@ void command(char* commands) {
 	}
 }
 
-int calc_wait(int frames) {
+int frame(int frames) {
 	totalFrames += frames;
 	int targetMillis = totalFrames * 100000 / FRAME_RATE;
 	if ((totalFrames * 100000) % FRAME_RATE > 0) {
