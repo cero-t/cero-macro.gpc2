@@ -11,41 +11,37 @@
 // Combo
 // ------------------------------------------------------------
 combo my_combo {
-	command("hk"); wait(calc_wait(40));
-	command("6"); wait(calc_wait(15));
-	command("hp"); wait(calc_wait(20));
-	command(""); wait(calc_wait(5));
-	command("hphk"); wait(calc_wait(10));
-	command(""); wait(calc_wait(45));
-	command("4hk"); wait(calc_wait(60));
-	command("lk"); wait(calc_wait(5));
-	command("2"); wait(calc_wait(1));
-	command("1"); wait(calc_wait(1));
-	command("4lk"); wait(calc_wait(5));
-	command(""); wait(calc_wait(50));
-	command("2"); wait(calc_wait(1));
-	command("3"); wait(calc_wait(1));
-	command("6"); wait(calc_wait(1));
-	command("2"); wait(calc_wait(1));
-	command("3"); wait(calc_wait(1));
-	command("6lp"); wait(calc_wait(1));
+	command("hk"); wait(frame(40));
+	command("6"); wait(frame(15));
+	command("hp"); wait(frame(20));
+	command(""); wait(frame(5));
+	command("hphk"); wait(frame(10));
+	command(""); wait(frame(45));
+	command("4hk"); wait(frame(60));
+	command("lk"); wait(frame(5));
+	command("2"); wait(frame(1));
+	command("1"); wait(frame(1));
+	command("4lk"); wait(frame(5));
+	command(""); wait(frame(50));
+	command("2"); wait(frame(1));
+	command("3"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("2"); wait(frame(1));
+	command("3"); wait(frame(1));
+	command("6lp"); wait(frame(1));
 }
 
 // ------------------------------------------------------------
 // Functions
 // ------------------------------------------------------------
-bool done = FALSE;
 uint32 startMillis = 0;
 uint32 totalFrames = 0;
 int8 LP, MP, HP, LK, MK, HK, SELECT, START;
 
-main {
-	if (done == FALSE) {
-		done = TRUE;
-		configure();
-		startMillis = system_time();
-		combo_run(my_combo);
-    }
+init {
+	configure();
+	startMillis = system_time();
+	combo_run(my_combo);
 }
 
 void configure() {
@@ -136,7 +132,7 @@ void command(char* commands) {
 	}
 }
 
-int calc_wait(int frames) {
+int frame(int frames) {
 	totalFrames += frames;
 	int targetMillis = totalFrames * 100000 / FRAME_RATE;
 	if ((totalFrames * 100000) % FRAME_RATE > 0) {
