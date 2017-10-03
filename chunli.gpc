@@ -1,0 +1,305 @@
+#pragma METAINFO("@cero_t", 1, 0, "Ryu Trial Vol.2 #10")
+
+// ------------------------------------------------------------
+// Configuration
+// ------------------------------------------------------------
+
+#define FRAME_RATE	5994 // fps * 100
+#define MODE		'ps3' // ps3, ps4, xb360, xb1
+
+// ------------------------------------------------------------
+// Combo
+// ------------------------------------------------------------
+
+// lplplp ex-kiko saving-dash lplplp ex-kiko - loop
+combo my_combo {
+	command("1"); wait(frame(60));
+	command("1lp"); wait(frame(15));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(17));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(1));
+	command("1"); wait(frame(4));
+	command("6lpmp"); wait(frame(1));
+	command(""); wait(frame(10));
+	command("mpmk"); wait(frame(3));
+	command("6"); wait(frame(1));
+	command(""); wait(frame(1));
+	command("6"); wait(frame(26));
+	command("1"); wait(frame(12));
+	command("1lp"); wait(frame(20));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(20));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(1));
+	command("1"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(8));
+	command("1mphp"); wait(frame(1));
+	command("1"); wait(frame(48));
+
+	// Not loop
+	command("1hp"); wait(frame(1));
+	command("1"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1hp"); wait(frame(46)); // different from loop
+	command("1"); wait(frame(1));
+	command("1hp"); wait(frame(1));
+	command("1"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1mp"); wait(frame(47));
+	command("1hp"); wait(frame(1));
+	command("4"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1mp"); wait(frame(47));
+	command("1hp"); wait(frame(1));
+	command("1"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1lp"); wait(frame(49)); // different from loop
+	command("4hp"); wait(frame(1));
+	command("4"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1hp"); wait(frame(45));
+	command("1"); wait(frame(1));
+
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+
+	command("1hp"); wait(frame(1));
+	command("1"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1mp"); wait(frame(47));
+	command("1hp"); wait(frame(1));
+	command("4"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1mp"); wait(frame(1));
+
+	command(""); wait(frame(60));
+	command("6"); wait(frame(1));
+	command(""); wait(frame(1));
+	command("6"); wait(frame(1));
+
+	command("1"); wait(frame(90));
+	command("1lp"); wait(frame(20));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(20));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(5));
+	command("6mphp"); wait(frame(1));
+	command("1"); wait(frame(10));
+	command("1mpmk"); wait(frame(7));
+	command("6"); wait(frame(1));
+	command(""); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("6"); wait(frame(28));
+	command("2lp"); wait(frame(13));
+	command("2"); wait(frame(1));
+	command("2lp"); wait(frame(15));
+	command("2"); wait(frame(1));
+	command("2lp"); wait(frame(17));
+	command("2"); wait(frame(1));
+	command("2lp"); wait(frame(2));
+	command("lk"); wait(frame(1));
+	command("mk"); wait(frame(1));
+	command("lk"); wait(frame(1));
+	command("mk"); wait(frame(1));
+	command("lk"); wait(frame(1));
+	command("mkhk"); wait(frame(50));
+	command("2"); wait(frame(1));
+	command("3"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("2"); wait(frame(1));
+	command("3"); wait(frame(1));
+	command("6lpmphp"); wait(frame(1));
+
+}
+
+// lplp kiko saving-dash lplplp ex-kiko - loop
+combo my_combo2 {
+	command("1"); wait(frame(60));
+	command("1lp"); wait(frame(17));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(1));
+	command("1"); wait(frame(4));
+	command("6lp"); wait(frame(1));
+	command("1"); wait(frame(10));
+	command("1mpmk"); wait(frame(3));
+	command("6"); wait(frame(1));
+	command(""); wait(frame(1));
+	command("6"); wait(frame(10));
+	command("1"); wait(frame(10));
+	command("4"); wait(frame(9));
+	command("1lp"); wait(frame(17));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(17));
+	command("1"); wait(frame(1));
+	command("1lp"); wait(frame(5));
+	command("6mphp"); wait(frame(1));
+	command("1"); wait(frame(53));
+
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+	call(loop);
+
+}
+
+combo loop {
+	// loop
+	command("1hp"); wait(frame(1));
+	command("1"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1mp"); wait(frame(47));
+	command("1hp"); wait(frame(1));
+	command("4"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1mp"); wait(frame(47));
+	command("1hp"); wait(frame(1));
+	command("1"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1mp"); wait(frame(47));
+	command("4hp"); wait(frame(1));
+	command("4"); wait(frame(1));
+	command("6"); wait(frame(1));
+	command("1"); wait(frame(9));
+	command("1hp"); wait(frame(45));
+	command("1"); wait(frame(1));
+}
+
+// ------------------------------------------------------------
+// Functions
+// ------------------------------------------------------------
+uint32 startMillis = 0;
+uint32 totalFrames = 0;
+int8 LP, MP, HP, LK, MK, HK, SELECT, START;
+
+init {
+	configure();
+	startMillis = system_time();
+	combo_run(my_combo);
+}
+
+main {
+	if (get_val(BUTTON_2) >= 50.0) {
+		combo_stop(my_combo);
+	}
+}
+
+void configure() {
+	if (MODE == 'ps3' || MODE == 'ps4') {
+		LP = BUTTON_17;
+		MP = BUTTON_14;
+		HP = BUTTON_4;
+		LK = BUTTON_16;
+		MK = BUTTON_15;
+		HK = BUTTON_5;
+		SELECT = BUTTON_2;
+		START = BUTTON_3;
+	} else if (MODE == 'xb360' || MODE == 'xb1') {
+		LP = BUTTON_15;
+		MP = BUTTON_17;
+		HP = BUTTON_14;
+		LK = BUTTON_16;
+		MK = BUTTON_8;
+		HK = BUTTON_5;
+		SELECT = BUTTON_2;
+		START = BUTTON_3;
+	}
+}
+
+void command(char* commands) {
+	int i;
+	for (i = 0; i < 10; i++) {
+		char c = commands[i];
+		char next = commands[i + 1];
+
+		if (c == NULL) {
+			break;
+		}
+
+		if (c == '1') {
+			set_val(BUTTON_11, 100.0);
+			set_val(BUTTON_12, 100.0);
+		} else if (c == '2') {
+			set_val(BUTTON_11, 100.0);
+		} else if (c == '3') {
+			set_val(BUTTON_11, 100.0);
+			set_val(BUTTON_13, 100.0);
+		} else if (c == '4') {
+			set_val(BUTTON_12, 100.0);
+		} else if (c == '6') {
+			set_val(BUTTON_13, 100.0);
+		} else if (c == '7') {
+			set_val(BUTTON_10, 100.0);
+			set_val(BUTTON_12, 100.0);
+		} else if (c == '8') {
+			set_val(BUTTON_10, 100.0);
+		} else if (c == '9') {
+			set_val(BUTTON_10, 100.0);
+			set_val(BUTTON_13, 100.0);
+		} else if (c == 'l' || c == 'L') {
+			if (next == 'p' || next == 'P') {
+				set_val(LP, 100.0);
+				i++;
+			} else if (next == 'k' || next == 'K') {
+				set_val(LK, 100.0);
+				i++;
+			}
+		} else if (c == 'm' || c == 'M') {
+			if (next == 'p' || next == 'P') {
+				set_val(MP, 100.0);
+				i++;
+			} else if (next == 'k' || next == 'K') {
+				set_val(MK, 100.0);
+				i++;
+			}
+		} else if (c == 'h' || c == 'H') {
+			if (next == 'p' || next == 'P') {
+				set_val(HP, 100.0);
+				i++;
+			} else if (next == 'k' || next == 'K') {
+				set_val(HK, 100.0);
+				i++;
+			}
+		} else if (c == 's' || c == 'S') {
+			if (next == 'e' || next == 'E') {
+				set_val(SELECT, 100.0);
+				i++;
+			} else if (next == 't' || next == 'T') {
+				set_val(START, 100.0);
+				i++;
+			}
+		}
+	}
+}
+
+int frame(int frames) {
+	totalFrames += frames;
+	int targetMillis = totalFrames * 100000 / FRAME_RATE;
+	if ((totalFrames * 100000) % FRAME_RATE > 0) {
+		targetMillis ++;
+	}
+	int diff = system_time() - startMillis;
+	int result = targetMillis - diff;
+	return result;
+}
