@@ -7,7 +7,7 @@
 
 var KEY_ASSIGN;
 var OPTIMIZE_MIN_LENGTH = 5;
-var FRAME_RATE = 59.94;
+var FRAME_RATE = 59.935;
 
 var XB360_T2_ASSIGN = {
 	"UP": "BUTTON_10",
@@ -37,6 +37,9 @@ var PS3_T2_ASSIGN = {
 	"HK": "BUTTON_5",
 	"SELECT": "BUTTON_2",
 	"START": "BUTTON_3",
+	"REC": "BUTTON_9",
+	"PLAY": "BUTTON_6",
+	"RESET": "BUTTON_2",
 }
 
 var PS3_T1_ASSIGN = {
@@ -145,6 +148,16 @@ function convert(text, optimize) {
 		}
 		if (command.indexOf('start') >= 0) {
 			buttons.push(KEY_ASSIGN['START'])
+		}
+
+		if (command.indexOf('rec') >= 0) {
+			buttons.push(KEY_ASSIGN['REC'])
+		}
+		if (command.indexOf('play') >= 0) {
+			buttons.push(KEY_ASSIGN['PLAY'])
+		}
+		if (command.indexOf('reset') >= 0) {
+			buttons.push(KEY_ASSIGN['RESET'])
 		}
 
 		var line = "";
