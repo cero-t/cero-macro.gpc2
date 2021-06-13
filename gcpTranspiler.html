@@ -42,6 +42,25 @@ var PS3_T2_ASSIGN = {
 	"RESET": "BUTTON_2",
 }
 
+var SWITCH_T2_ASSIGN = {
+	"UP": "BUTTON_10",
+	"DOWN": "BUTTON_11",
+	"LEFT": "BUTTON_12",
+	"RIGHT": "BUTTON_13",
+	"LP": "BUTTON_17",
+	"MP": "BUTTON_14",
+	"HP": "BUTTON_4",
+	"LK": "BUTTON_16",
+	"MK": "BUTTON_15",
+	"HK": "BUTTON_5",
+	"SELECT": "BUTTON_2",
+	"START": "BUTTON_3",
+	"REC": "BUTTON_9",
+	"PLAY": "BUTTON_6",
+	"RESET": "BUTTON_2",
+}
+
+
 var PS3_T1_ASSIGN = {
 	"UP": "PS3_UP",
 	"DOWN": "PS3_DOWN",
@@ -63,6 +82,8 @@ function submitForm(form) {
 			KEY_ASSIGN = PS3_T2_ASSIGN;
 		} else if (form['console'].value == 'PS3_T1') {
 			KEY_ASSIGN = PS3_T1_ASSIGN;
+		} else if (form['console'].value == 'SWITCH_T2') {
+			KEY_ASSIGN = SWITCH_T2_ASSIGN;
 		} else {
 			KEY_ASSIGN = XB360_T2_ASSIGN;
 		}
@@ -284,6 +305,7 @@ lk:5
 	Console:
 	<select id="console" name="console">
 		<option value="PS3_T2">PS3 / PS4 (Titan Two)</option>
+		<option value="SWITCH_T2">Nintendo Switch (Titan Two)</option>
 		<option value="XB360_T2">Xbox 360 / Xbox One (Titan Two)</option>
 		<option value="PS3_T1">PS3 (Titan One)</option>
 	</select>
